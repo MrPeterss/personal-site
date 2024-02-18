@@ -50,8 +50,9 @@ export default function Project({
           <p>{description}</p>
           <div className="flex justify-between items-center">
             <div className="flex gap-0.5 flex-wrap">
-              {frameworks.map((framework) => (
+              {frameworks.map((framework, index) => (
                 <img
+                  key={index}
                   src={badges.frameworks[framework as keyof typeof badges.frameworks]}
                   alt={framework}
                   className="h-7"
