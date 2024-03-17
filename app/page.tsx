@@ -8,17 +8,17 @@ export default function Home() {
     <main>
       <section className="h-screen flex flex-col items-center justify-around p-10">
         <Image
-          src="/peter-headshot-more.png"
+          src="/peter-headshot.png"
           alt="Peter Headshot"
           width={2048}
           height={2048}
           className="rounded-full w-80 bg-blue-300"
         />
         <p className="text-xl">
-          I’m Peter, a <b className="text-[#B31B1B]">Cornell University</b>{" "}
+          I’m Peter, a <a href={"https://cis.cornell.edu/"} className="text-[#B31B1B] font-bold" target="_blank" rel="noreferrer">Cornell University</a>{" "}
           Information Science student and full-stack developer with a passion
-          for developing meaningful applications. I am an incoming intern at{" "}
-          <b className="text-[#3D64C9]">OneStream Software</b>.
+          for developing meaningful applications. I am an incoming software engineer intern at{" "}
+          <a href={"https://www.onestream.com/"} className="text-[#3D64C9] font-bold" target="_blank" rel="noreferrer">OneStream Software</a>
         </p>
       </section>
       <section className="bg-[#F2F2F2] p-6 flex flex-col gap-4">
