@@ -1,8 +1,48 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Providers } from './providers';
+import local from 'next/font/local';
+
 
 const inter = Inter({ subsets: ["latin"] });
+
+const googleSans = local({
+  src: [
+    {
+      path: '../public/fonts/gs-regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/gs-italic.ttf',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../public/fonts/gs-medium.ttf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/gs-medium-italic.ttf',
+      weight: '500',
+      style: 'italic',
+    },
+    {
+      path: '../public/fonts/gs-bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/gs-bold-italic.ttf',
+      weight: '700',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-google'
+});
+
 
 export const metadata: Metadata = {
   title: "Peter Bidoshi",
@@ -30,7 +70,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} ${googleSans.variable}`}>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }

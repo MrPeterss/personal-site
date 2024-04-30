@@ -2,8 +2,8 @@
 
 import badges from "@/helpers/badges";
 import Link from "next/link";
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 
 interface ProjectProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
@@ -27,23 +27,23 @@ export default function Project({
     <div
       {...attributes}
       className={
-        `lg:h-44 relative rounded-lg shadow-lg bg-[#F2F2F2]`
+        `md:h-[216px] relative rounded-lg shadow-lg bg-[#F2F2F2] border-4 border-[#E6E6E6] overflow-hidden`
       }
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={`flex flex-col justify-end w-full p-4 gap-2 h-44 bg-right-top bg-contain bg-no-repeat ` + img}>
-        <h3 className="font-semibold text-3xl">{title}</h3>
+      <div className={`flex flex-col justify-end w-full p-4 gap-2 h-44 md:h-full bg-right-top bg-contain bg-no-repeat ` + img}>
+        <h3 className="font-semibold text-3xl drop-shadow-2xl stroke-2 stroke-white">{title}</h3>
         <div className="flex gap-1">{children}</div>
         <div
           className={
             "absolute transition-all duration-500 w-full h-full top-0 rounded-lg p-6 left-0 bg-white bg-opacity-90 text-sm flex flex-col justify-between " +
-            (!isHovered ? "opacity-0" : "opacity-0 lg:opacity-100")
+            (!isHovered ? "opacity-0" : "opacity-0 md:opacity-100")
           }
         >
           <p>{description}</p>
           <div className="flex justify-between items-center">
-            <div className="flex gap-0.5 flex-wrap">
+            <div className="flex gap-0.5 flex-wrap w-1/2">
               {frameworks.map((framework, index) => (
                 <img
                   key={index}
@@ -63,19 +63,20 @@ export default function Project({
               target="_blank"
               rel="noopener noreferrer"
             >
-              Open Code
+              <Image src={"/outside.png"} alt="external link" width={24} height={24} className="ml-[-8px]" />
+              Code
             </Link>
           </div>
         </div>
       </div>
       <div
         className={
-          "transition-all duration-500 w-full top-0 rounded-lg p-6 left-0 bg-white bg-opacity-90 text-sm flex flex-col justify-between lg:hidden"
+          "transition-all duration-500 w-full top-0 rounded-lg p-6 left-0 bg-white bg-opacity-90 text-sm flex flex-col justify-between md:hidden"
         }
       >
-        <p>{description}</p>
+        <p className="pb-6">{description}</p>
         <div className="flex justify-between items-center">
-          <div className="flex gap-0.5 flex-wrap">
+          <div className="flex gap-0.5 flex-wrap w-1/3">
             {frameworks.map((framework, index) => (
               <img
                 key={index}
@@ -88,7 +89,7 @@ export default function Project({
             ))}
           </div>
           <Link
-            className="p-2 w-24 flex items-center justify-center h-10 rounded-md shadow-lg bg-blue-500 font-semibold text-white"
+            className="w-24 flex items-center justify-center h-10 rounded-md shadow-lg bg-blue-500 font-semibold text-white"
             href={link}
             target="_blank"
             rel="noopener noreferrer"
