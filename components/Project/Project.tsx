@@ -33,7 +33,7 @@ export default function Project({
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={`flex flex-col justify-end w-full p-4 gap-2 h-44 md:h-full bg-right-top bg-contain bg-no-repeat ` + img}>
-        <h3 className="font-semibold text-3xl drop-shadow-2xl stroke-2 stroke-white">{title}</h3>
+        <h3 className="font-semibold text-3xl drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,1)]">{title}</h3>
         <div className="flex gap-1">{children}</div>
         <div
           className={

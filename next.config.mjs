@@ -12,6 +12,9 @@ const nextConfig = {
             },
         ],
     },
+    env: {
+        ADOBE_KEY: process.env.ADOBE_KEY,
+    },
 }
   
 

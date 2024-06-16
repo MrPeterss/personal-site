@@ -3,6 +3,7 @@
 import ParalaxIcon from "@/components/ParalaxIcon";
 import Badge from "@/components/Project/Badge";
 import Project from "@/components/Project/Project";
+import Resume from "@/components/resume/Resume";
 import badges from "@/helpers/badges";
 import Image from "next/image";
 import { Parallax } from "react-scroll-parallax";
@@ -83,8 +84,8 @@ export default function Home() {
           <Project
             title="All In"
             img="bg-[url(/allin.png)]"
-            description="Sports betting app for Cornell students with an options-style contract trading mechanic. Provides a fun way for students to interact with Cornell basketball. Presented at Millennium SP24"
-            link="https://github.com/cuappdev/all-in-ios-swiftui"
+            description="A sports betting app for Cornell students featuring an options-style contract trading mechanic, offering a fun way for students to engage with Cornell basketball. Presented at Millennium SP24."
+            link="https://github.com/cuappdev/all-in-ios-swiftui/"
             frameworks={["swiftui"]}
           >
             <Badge>Swift</Badge>
@@ -92,14 +93,44 @@ export default function Home() {
           <Project
             title="Melo Tomorrow"
             img="bg-[url(/melo.png)]"
-            description="Full stack clothing brand app selling clothing for individuals with tactile hypersensitivities, aimed at providing a more inclusive fashion experience."
+            description="A full-stack clothing brand app designed to sell clothing for individuals with tactile hypersensitivities, offering a more inclusive fashion experience."
             link="https://github.com/orgs/truscoop/repositories"
             frameworks={["next.js", "flask"]}
           >
             <Badge>TypeScript</Badge>
             <Badge>Python</Badge>
           </Project>
+          <Project
+            title="Crumb-less"
+            img="bg-[url(/crumb-less.png)]"
+            description="A personalized restaurant recommendation web app for Tucson, built with text Mining techniques and similarity metrics in Flask and MySQL."
+            link="https://github.com/MrPeterss/crumb-less/"
+            frameworks={["flask"]}
+          >
+            <Badge>Python</Badge>
+            <Badge>SQL</Badge>
+          </Project>
+          <Project
+            title="Minecraft Terra Mapper"
+            img="bg-[url(/mc-terra-mapper.png)]"
+            description="A simple tool for creating realistic terrain from real world data in Minecraft"
+            link="https://github.com/MrPeterss/minecraft-terra-mapper/"
+            frameworks={["spigot", "next.js"]}
+          >
+            <Badge>Java</Badge>
+            <Badge>Typescript</Badge>
+          </Project>
+          <Project
+            title="Healthy Eating in Dining Halls"
+            img="bg-[url(/carrot.png)]"
+            description="A project that predicts the healthiness of foods in dining halls using a linear regression model generate NutriScores, helping students make healthier food choices."
+            link="https://github.com/MrPeterss/healthy-dining/"
+            frameworks={["sklearn", "pandas"]}
+          >
+            <Badge>Python</Badge>
+          </Project>
         </div>
+        <Resume />
       </section>
     </main>
   );
