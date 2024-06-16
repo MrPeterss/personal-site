@@ -1,6 +1,12 @@
 import { useEffect } from "react";
 import { unstable_noStore as noStore } from 'next/cache'
 
+declare global {
+  interface Window {
+    AdobeDC: any;
+  }
+}
+
 export default function Resume() {
 
   useEffect(() => {
@@ -20,7 +26,7 @@ export default function Resume() {
 
   const initAdobeViewSDK = () => {
     document.addEventListener("adobe_dc_view_sdk.ready", function() {
-      var adobeDCView = new AdobeDC.View({clientId: process.env.ADOBE_KEY, divId: "adobe-dc-view"});
+      var adobeDCView = new window.AdobeDC.View({clientId: process.env.ADOBE_KEY, divId: "adobe-dc-view"});
       adobeDCView.previewFile({
         content: {location: {url: "/Peter Bidoshi Resume.pdf"}},
         metaData: {fileName: "Peter Bidoshi's Resume June 2024.pdf"},
