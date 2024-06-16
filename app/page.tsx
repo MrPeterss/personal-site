@@ -15,11 +15,11 @@ export default function Home() {
         <section className="flex flex-col gap-16 z-0 opacity-50 rotate-[-30deg] p-0">
           <div>
             <Parallax translateX={[-300, 0]} className={"flex gap-10"}>
-              {Object.keys(badges.languages).map((language) => (
-                <img src={badges.languages[language as keyof typeof badges.languages]} alt={language} className="h-16" />
+              {Object.keys(badges.languages).map((language, i) => (
+                <img src={badges.languages[language as keyof typeof badges.languages]} alt={language} className="h-16" key={i}/>
               ))}
-              {Object.keys(badges.languages).map((language) => (
-                <img src={badges.languages[language as keyof typeof badges.languages]} alt={language} className="h-16" />
+              {Object.keys(badges.languages).map((language, i) => (
+                <img src={badges.languages[language as keyof typeof badges.languages]} alt={language} className="h-16" key={i} />
               ))}
             </Parallax>
           </div>
