@@ -4,6 +4,7 @@ import gsap from 'gsap';
 export default function Cursor() {
 
   const [hidden, setHidden] = useState(false);
+  const [overText, setOverText] = useState(false);
 
   const pointer = useRef(null);
 
@@ -18,7 +19,8 @@ export default function Cursor() {
 
   // when hovering over a link, change the pointer to a pointer
   window.addEventListener('mouseover', (e: MouseEvent) => {
-    if (e.target instanceof HTMLButtonElement && !hidden) {
+    var fire = e.target instanceof HTMLButtonElement || (e.target instanceof HTMLDivElement && e.target.classList.contains("should-hide"));
+    if (fire && !hidden) {
       setHidden(true);
     } else if (hidden) {
       setHidden(false);
@@ -29,6 +31,6 @@ export default function Cursor() {
 
 
   return (
-    <div className={`fixed pointer-events-none left-0 top-0 w-8 h-8 rounded-full z-[9999] bg-white ${hidden ? "opacity-0": "opacity-80"}`} id="pointer" ref={pointer} />
+    <div className={`fixed pointer-events-none left-0 top-0 w-10 h-10 z-[9999] bg-white rounded-full ${hidden ? "opacity-0": "opacity-90"}`} id="pointer" ref={pointer} />
   );
 }

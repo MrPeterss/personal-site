@@ -3,7 +3,8 @@
 import badges from "@/helpers/badges";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { MouseEventHandler, useRef, useState } from "react";
+import gsap from "gsap";
 
 interface ProjectProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
@@ -21,25 +22,62 @@ export default function Project({
   children,
   ...attributes
 }: ProjectProps) {
-  const [isHovered, setIsHovered] = useState(false);
+
+  const backgroundRef = useRef<HTMLDivElement>(null);
+  const childRef = useRef<HTMLDivElement>(null);
+  const [hovered, setHovered] = useState(false);
+
+  const mouseEnter: MouseEventHandler<HTMLDivElement> = (e) => {
+    var offsetX = e.clientX - e.currentTarget.getBoundingClientRect().left - e.currentTarget.getBoundingClientRect().width / 2;
+    var offsetY = e.clientY - e.currentTarget.getBoundingClientRect().top - e.currentTarget.getBoundingClientRect().height / 2;
+    
+    gsap.fromTo(
+        backgroundRef.current,
+        { x: offsetX, y: offsetY, scale: 0, opacity: 0},
+        { x: 0, y: 0, scale: 1, opacity: 1, duration: 0.25 }
+    );
+
+    setHovered(true);
+}
+
+const mouseLeave: MouseEventHandler<HTMLDivElement> = (e) => {
+    gsap.to(backgroundRef.current, { scale: 0, duration: 0.25 });
+    gsap.to(childRef.current, { x: 0, y: 0, duration: 0.25 });
+    setHovered(false);
+}
+
+const mouseMove: MouseEventHandler<HTMLButtonElement> = (e) => {
+    if (hovered) {
+
+        var centerX = 0;
+        var centerY = 0;
+        var mouseLocX = e.clientX - e.currentTarget.getBoundingClientRect().left - e.currentTarget.getBoundingClientRect().width / 2;
+        var mouseLocY = e.clientY - e.currentTarget.getBoundingClientRect().top - e.currentTarget.getBoundingClientRect().height / 2;
+
+        var offsetX = mouseLocX - centerX;
+        var offsetY = mouseLocY - centerY;
+
+        gsap.to(childRef.current, { x: offsetX / 8, y: offsetY / 8, duration: 0.1 });
+    }
+}
 
   return (
     <div
       {...attributes}
       className={
-        `md:h-[216px] relative rounded-lg shadow-lg bg-gray-900 border-4 border-white overflow-hidden`
+        `md:h-[216px] relative rounded-lg shadow-lg bg-gray-900 border-4 border-white overflow-hidden should-hide`
       }
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={mouseEnter}
+      onMouseLeave={mouseLeave}
     >
-      <div className={`flex flex-col justify-end w-full p-4 gap-2 h-44 md:h-full bg-right-top bg-contain bg-no-repeat ` + img}>
+      <div className={`flex flex-col justify-end w-full p-4 gap-2 h-44 md:h-full bg-right-top bg-contain bg-no-repeat pointer-events-none ` + img}>
         <h3 className="font-semibold text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,1)]">{title}</h3>
         <div className="flex gap-1">{children}</div>
         <div
           className={
-            "absolute transition-all duration-500 w-full h-full top-0 rounded-lg p-6 left-0 bg-black bg-opacity-75 text-sm flex flex-col justify-between " +
-            (!isHovered ? "opacity-0" : "opacity-0 md:opacity-100")
+            "absolute duration-500 w-full h-full top-0 rounded-lg p-6 left-0 bg-black bg-opacity-75 text-sm flex flex-col justify-between opacity-0"
           }
+          ref={backgroundRef}
         >
           <p>{description}</p>
           <div className="flex justify-between items-center">

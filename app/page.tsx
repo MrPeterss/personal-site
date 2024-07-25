@@ -1,6 +1,5 @@
 "use client";
 
-import ParalaxIcon from "@/components/ParalaxIcon";
 import Badge from "@/components/Project/Badge";
 import Project from "@/components/Project/Project";
 import Resume from "@/components/resume/Resume";
@@ -8,16 +7,22 @@ import badges from "@/helpers/badges";
 import Image from "next/image";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { useEffect, useRef } from "react";
+import { useRef, useState } from "react";
 import Cursor from "@/components/Cursor/Cursor";
-import ScrollArrow from "@/components/ScrollArrow/ScrollArrow";
-
+import Button from "@/components/Button/Button";
+import ScrollTrigger from 'gsap/ScrollTrigger'
 
 export default function Home() {
 
+  const backgroundRef = useRef<HTMLDivElement>(null);
+  const [jumped, setJumped] = useState(false);
+
+  gsap.registerPlugin(ScrollTrigger);
+
   useGSAP(() => {
+    
     gsap.fromTo(
-      "#intro h2",
+      "#intro > *",
       {
         opacity: 0,
         y: 50,
@@ -26,33 +31,65 @@ export default function Home() {
         opacity: 1,
         y: 0,
         duration: 1,
-        stagger: 0.6
+        stagger: 0.5
       }
     );
+
+    let t1 = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#sec-1",
+        start: "top top",
+        end: "+=500",
+        scrub: 1,
+      }
+    })
+
+    t1.fromTo("#main-bg", {
+      scale: 0,
+      rotate: 0
+    }, {
+      scale: 2.5,
+      rotate: 180,
+    });
+
+    t1.fromTo("#sec-1", {
+      opacity: 1,
+    }, {
+      opacity: 0,
+    }, 0.5);
+
   });
+
+  const jumpIn = () => {
+    if (jumped) return;
+    setJumped(true);
+
+  };
 
 
   return (
     <>
-      <Cursor />
-      <div className="fixed w-full left-0 p-12 h-screen">
-        <div className="flex flex-col items-end h-full">
-          <div className="flex flex-col-reverse h-full">
-            <ScrollArrow />
-          </div>
-        </div>
+      <div className="flex items-center fixed w-screen h-screen z-[-10] content-center">
+        <Image id="main-bg" className="scale-0" src={"/images/pinwheel.png"} alt={"pinwheel"} width={2048} height={2048} />
       </div>
-      <section className="h-screen flex flex-col items-center justify-around p-20">
-        <div className="w-full text-6xl font-medium" id="intro">
+      <Cursor />
+      <section id="sec-1" className="h-screen flex items-center justify-around p-20">
+        <div className="w-full text-6xl font-medium flex flex-col content-between justify-around gap-4" id="intro">
           <h2>Hi...</h2>
-          <h2>I'm Peter </h2>
+          <h2>I'm Peter</h2>
+          <div className="flex gap-4">
+            <Button className="rounded-full w-48 h-16" onClick={jumpIn}>
+              <h3 className="text-3xl">🎯jump in</h3>
+            </Button>
+
+          </div>
         </div>
         <Image
           src="/peter-headshot.png"
           alt="Peter Headshot"
           width={2048}
           height={2048}
-          className="rounded-full w-96"
+          className="rounded-full w-[512px]"
         />
         {/* <p className="text-xl max-w-[712px]">
           I’m Peter, a <a href={"https://cis.cornell.edu/"} className="text-[#B31B1B] font-bold" target="_blank" rel="noreferrer">Cornell University</a>{" "}
@@ -61,7 +98,7 @@ export default function Home() {
           <a href={"https://www.onestream.com/"} className="text-[#3D64C9] font-bold" target="_blank" rel="noreferrer">OneStream Software</a>
         </p> */}
       </section>
-      {/* <section className="p-6 flex flex-col gap-4 max-w-[712px] rounded-lg border-4 border-white">
+      <section id="sec-2" className="p-6 flex flex-col gap-4 max-w-[712px] rounded-lg border-4 border-white">
         <h2 className="text-4xl font-bold">Tech I Use 💻</h2>
         <h3 className="text-2xl font-semibold">Languages:</h3>
         <div className="flex flex-wrap gap-1 justify-center">
@@ -148,7 +185,7 @@ export default function Home() {
       <section className="p-6 flex flex-col gap-6 max-w-[712px]">
         
         <Resume />
-      </section> */}
+      </section>
     </>
   );
 }
