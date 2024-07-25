@@ -70,9 +70,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${googleSans.variable}`}>
+      <body className={`${inter.className} ${googleSans.variable} bg-[#1E1E1E] text-white flex flex-col items-center cursor-none`}>
         <Providers>
-          {children}
+          <main className="w-2/3 font-google">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>

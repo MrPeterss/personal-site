@@ -32,6 +32,6 @@ export default function Resume() {
   };
 
   return (
-    <div id="adobe-dc-view" className="h-screen"></div>
+    <div id="adobe-dc-view" className="h-screen" />
   );
 }

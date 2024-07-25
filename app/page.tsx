@@ -6,48 +6,62 @@ import Project from "@/components/Project/Project";
 import Resume from "@/components/resume/Resume";
 import badges from "@/helpers/badges";
 import Image from "next/image";
-import { Parallax } from "react-scroll-parallax";
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { useEffect, useRef } from "react";
+import Cursor from "@/components/Cursor/Cursor";
+import ScrollArrow from "@/components/ScrollArrow/ScrollArrow";
+
 
 export default function Home() {
+
+  useGSAP(() => {
+    gsap.fromTo(
+      "#intro h2",
+      {
+        opacity: 0,
+        y: 50,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.6
+      }
+    );
+  });
+
+
   return (
-    <main className="w-[100vw] flex flex-col items-center font-google">
-      <div className="absolute top-32 overflow-x-clip w-[100vw]">
-        <section className="flex flex-col gap-16 z-0 opacity-50 rotate-[-30deg] p-0">
-          <div>
-            <Parallax translateX={[-300, 0]} className={"flex gap-10"}>
-              {Object.keys(badges.languages).map((language, i) => (
-                <img src={badges.languages[language as keyof typeof badges.languages]} alt={language} className="h-16" key={i}/>
-              ))}
-              {Object.keys(badges.languages).map((language, i) => (
-                <img src={badges.languages[language as keyof typeof badges.languages]} alt={language} className="h-16" key={i} />
-              ))}
-            </Parallax>
+    <>
+      <Cursor />
+      <div className="fixed w-full left-0 p-12 h-screen">
+        <div className="flex flex-col items-end h-full">
+          <div className="flex flex-col-reverse h-full">
+            <ScrollArrow />
           </div>
-          <div>
-            <Parallax translateX={[-150, 0]} className={"flex gap-10"}>
-              {Object.keys(badges.frameworks).map((framework) => (
-                <img src={badges.frameworks[framework as keyof typeof badges.frameworks]} alt={framework} className="h-16" />
-              ))}
-            </Parallax>
-          </div>
-        </section>
+        </div>
       </div>
-      <section className="h-screen flex flex-col items-center justify-around p-10 z-10 relative">
+      <section className="h-screen flex flex-col items-center justify-around p-20">
+        <div className="w-full text-6xl font-medium" id="intro">
+          <h2>Hi...</h2>
+          <h2>I'm Peter </h2>
+        </div>
         <Image
           src="/peter-headshot.png"
           alt="Peter Headshot"
           width={2048}
           height={2048}
-          className="rounded-full w-80 bg-blue-300"
+          className="rounded-full w-96"
         />
-        <p className="text-xl max-w-[712px]">
+        {/* <p className="text-xl max-w-[712px]">
           I’m Peter, a <a href={"https://cis.cornell.edu/"} className="text-[#B31B1B] font-bold" target="_blank" rel="noreferrer">Cornell University</a>{" "}
           Information Science student and full-stack developer with a passion
           for developing meaningful applications. I am an incoming software engineer intern at{" "}
           <a href={"https://www.onestream.com/"} className="text-[#3D64C9] font-bold" target="_blank" rel="noreferrer">OneStream Software</a>
-        </p>
+        </p> */}
       </section>
-      <section className="bg-[#F2F2F2] p-6 flex flex-col gap-4 max-w-[712px]">
+      {/* <section className="p-6 flex flex-col gap-4 max-w-[712px] rounded-lg border-4 border-white">
         <h2 className="text-4xl font-bold">Tech I Use 💻</h2>
         <h3 className="text-2xl font-semibold">Languages:</h3>
         <div className="flex flex-wrap gap-1 justify-center">
@@ -130,8 +144,11 @@ export default function Home() {
             <Badge>Python</Badge>
           </Project>
         </div>
-        <Resume />
       </section>
-    </main>
+      <section className="p-6 flex flex-col gap-6 max-w-[712px]">
+        
+        <Resume />
+      </section> */}
+    </>
   );
 }

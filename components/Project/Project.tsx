@@ -27,17 +27,17 @@ export default function Project({
     <div
       {...attributes}
       className={
-        `md:h-[216px] relative rounded-lg shadow-lg bg-[#F2F2F2] border-4 border-[#E6E6E6] overflow-hidden`
+        `md:h-[216px] relative rounded-lg shadow-lg bg-gray-900 border-4 border-white overflow-hidden`
       }
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={`flex flex-col justify-end w-full p-4 gap-2 h-44 md:h-full bg-right-top bg-contain bg-no-repeat ` + img}>
-        <h3 className="font-semibold text-3xl drop-shadow-[0_1.2px_1.2px_rgba(255,255,255,1)]">{title}</h3>
+        <h3 className="font-semibold text-3xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,1)]">{title}</h3>
         <div className="flex gap-1">{children}</div>
         <div
           className={
-            "absolute transition-all duration-500 w-full h-full top-0 rounded-lg p-6 left-0 bg-white bg-opacity-90 text-sm flex flex-col justify-between " +
+            "absolute transition-all duration-500 w-full h-full top-0 rounded-lg p-6 left-0 bg-black bg-opacity-75 text-sm flex flex-col justify-between " +
             (!isHovered ? "opacity-0" : "opacity-0 md:opacity-100")
           }
         >
