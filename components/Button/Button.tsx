@@ -4,8 +4,10 @@ import gsap from 'gsap';
 export default function Button({ children, onClick, className, ...props }: { children?: React.ReactNode, onClick?: () => void, className?: string, props?: any }) {
 
     const [hovered, setHovered] = useState(false);
+    const [clicked, setClicked] = useState(false);
 
     const backgroundRef = useRef<HTMLDivElement>(null);
+    const onClickRef = useRef<HTMLDivElement>(null);
     const childRef = useRef<HTMLImageElement>(null);
 
     const mouseEnter: MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -24,7 +26,9 @@ export default function Button({ children, onClick, className, ...props }: { chi
     const mouseLeave: MouseEventHandler<HTMLButtonElement> = (e) => {
         gsap.to(backgroundRef.current, { scale: 0, duration: 0.25 });
         gsap.to(childRef.current, { x: 0, y: 0, duration: 0.25 });
+        gsap.to(onClickRef.current, { scale: 0, opacity: 0, duration: 0.25 });
         setHovered(false);
+        setClicked(false);
     }
     
     const mouseMove: MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -42,9 +46,17 @@ export default function Button({ children, onClick, className, ...props }: { chi
         }
     }
 
+    const mouseDown: MouseEventHandler<HTMLButtonElement> = (e) => {
+        setClicked(true);
+    }
+
+    const mouseUp: MouseEventHandler<HTMLButtonElement> = (e) => {
+        setClicked(false);
+    }
+
     return (
-        <button onClick={onClick} className={`border-4 border-white flex items-center justify-center overflow-hidden cursor-none ${className}`} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} onMouseMove={mouseMove} {...props}>
-            <div id="scroll-bg" className={`border-4 border-white absolute bg-white pointer-events-none opacity-0 z-[-999] ${className}`} ref={backgroundRef}/>
+        <button onClick={onClick} onMouseDown={mouseDown} onMouseUp={mouseUp} className={`border-4 flex items-center justify-center overflow-hidden cursor-none ${clicked ? "border-[#181818]" : "border-white"} ${className}`} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} onMouseMove={mouseMove} {...props}>
+            <div className={`border-4 absolute pointer-events-none opacity-0 z-[-999] ${clicked ? "bg-[#181818] border-[#181818]" : "bg-white border-white"} ${className}`} ref={backgroundRef}/>
             <div ref={childRef} className={`pointer-events-none ${hovered ? "brightness-0" : ""}`}>
                 {children}
             </div>

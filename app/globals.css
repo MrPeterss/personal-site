@@ -7,3 +7,30 @@
     text-wrap: balance;
   }
 }
+
+.highlight {
+  position: relative;
+  background-origin: 0;
+  background-size: 200% 90%;
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  transition: background-position 0.3s ease-out;
+  padding: 4px 0px;
+}
+
+.highlight.shown {
+  position: relative;
+  background-origin: 0;
+  background-size: 200% 90%;
+  background-repeat: repeat-x;
+  background-position: -100% 100%;
+  transition: background-position 0.3s ease-out;
+}
+
+.grad-blue {
+  background-image: linear-gradient(to right, transparent 50%, #3D64C9 50%);
+}
+
+.grad-red {
+  background-image: linear-gradient(to right, transparent 50%, #B31B1B 50%);
+}

@@ -19,7 +19,7 @@ export default function Cursor() {
 
   // when hovering over a link, change the pointer to a pointer
   window.addEventListener('mouseover', (e: MouseEvent) => {
-    var fire = e.target instanceof HTMLButtonElement || (e.target instanceof HTMLDivElement && e.target.classList.contains("should-hide"));
+    var fire = e.target instanceof HTMLButtonElement || e.target instanceof HTMLAnchorElement;
     if (fire && !hidden) {
       setHidden(true);
     } else if (hidden) {

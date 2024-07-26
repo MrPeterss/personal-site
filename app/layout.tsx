@@ -72,7 +72,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} ${googleSans.variable} text-white flex flex-col items-center cursor-none bg-[url('/images/bg.svg')] bg-fixed`}>
         <Providers>
-          <main className="w-2/3 font-google">
+          <main className="w-full md:w-[712] font-google">
             {children}
           </main>
         </Providers>
