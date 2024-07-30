@@ -1,7 +1,6 @@
 "use client";
 
 import Badge from "@/components/Project/Badge";
-import Project from "@/components/Project/Project";
 import Resume from "@/components/resume/Resume";
 import badges from "@/helpers/badges";
 import Image from "next/image";
@@ -13,6 +12,7 @@ import Button from "@/components/Button/Button";
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import CustomLink from "@/components/Link/Link";
+import Project from "@/components/Project/Project";
 
 export default function Home() {
 
@@ -61,14 +61,11 @@ export default function Home() {
   });
 
   const jumpIn = () => {
-    console.log("jumping in");
     gsap.to(window, {
       duration: 1,
       scrollTo: "#sec-2",
       ease: "power2.inOut"
     });
-
-
   };
 
 
@@ -91,24 +88,30 @@ export default function Home() {
           alt="Peter Headshot"
           width={2048}
           height={2048}
-          className="rounded-full md:w-[256px] lg:w-[384px]"
+          className="rounded-full w-[256px] lg:w-[384px]"
         />
       </section>
-      <section id="sec-2" className="min-h-screen grid grid-cols-4 grid-rows-4">
-        <div className="bg-white" />
-        <div className="bg-gray-900" />
-        <div className="flex col-span-2 row-span-2 border border-[#1E1E1E] p-4">
-          <p className="text-white text-3xl p-4">
-            I’m Peter, a <CustomLink href={"https://cis.cornell.edu/"} className="grad-red text-[#B31B1B] font-bold">Cornell University</CustomLink>{" "}
+      <section id="sec-2" className="grid grid-cols-2 lg:w-5/6 md:grid-cols-4 gap-3 p-3 self-center">
+        <div className="flex col-span-2 bg-[#333333] p-4">
+          <p className="text-white text-[16px] lg:text-lg xl:text-xl tracking-widest">
+            I’m Peter, a <CustomLink href={"https://cis.cornell.edu/"} className="grad-red underline grad-red decoration-[#B31B1B] bg-[#B31B1B] md:bg-inherit">Cornell University</CustomLink>{" "}
             Information Science student and full-stack developer with a passion
             for developing meaningful applications. I am an incoming software engineer intern at{" "}
-            <a href={"https://www.onestream.com/"} className="text-[#3D64C9] font-bold" target="_blank" rel="noreferrer">OneStream Software</a>
+            <CustomLink href={"https://www.onestream.com/"} className="grad-blue underline decoration-[#3D64C9] bg-[#3D64C9] md:bg-inherit">OneStream Software</CustomLink>
           </p>
         </div>
-        <div className="row-span-2 bg-gray-800" />
-        <div className="col-span-2 row-span-2 bg-gray-500" />
-        <div className="row-span-2 bg-gray-600" />
-        <div className="bg-gray-400" />
+        <Project title="truscoop" img="/images/truscoop.png" link="/truscoop" className="bg-[#1E1E1E] row-span-1 aspect-square" type="project" />
+        <Project title="appdev" img="/images/appdev.png" link="/appdev" className="bg-[#1E1E1E] aspect-square md:aspect-auto md:row-span-2" type="extracurricular" />
+        
+        <Project title="friction" img="/images/friction.png" link="/friction" className="bg-[#1E1E1E] row-span-1 aspect-square" type="research project" />
+        <Project title="melo tomorrow" img="/images/melo-tomorrow.png" link="/melo-tomorrow" className="bg-[#1E1E1E] aspect-square md:aspect-auto md:row-span-2" type="company/project" />
+        <div className="w-full aspect-square bg-[#333333]"/>
+        <div className="w-full aspect-square bg-[#333333]"/>
+        <Project title="all in" img="/images/caution.png" link="/all-in" className="bg-[#1E1E1E] row-span-1 aspect-square" type="project" />
+        <div className="w-full aspect-square bg-[#333333]"/>
+        <Project title="coming soon" img="/images/caution.png" link="/all-in" className="bg-[#1E1E1E] row-span-1 aspect-square" type="under construction" />
+        <div className="w-full col-span-2 bg-[#333333]"/>
+        <Project title="coming soon" img="/images/caution.png" link="/all-in" className="bg-[#1E1E1E] row-span-1 aspect-square" type="under construction" />
       </section>
     </>
   );

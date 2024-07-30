@@ -14,6 +14,14 @@ export default function Button({ children, onClick, className, ...props }: { chi
         var offsetX = e.clientX - e.currentTarget.getBoundingClientRect().left - e.currentTarget.getBoundingClientRect().width / 2;
         var offsetY = e.clientY - e.currentTarget.getBoundingClientRect().top - e.currentTarget.getBoundingClientRect().height / 2;
         
+        gsap.to(
+            '#pointer',
+            {
+                opacity: 0,
+                duration: 0.1
+            }
+        )
+
         gsap.fromTo(
             backgroundRef.current,
             { x: offsetX, y: offsetY, scale: 0 },
@@ -27,6 +35,7 @@ export default function Button({ children, onClick, className, ...props }: { chi
         gsap.to(backgroundRef.current, { scale: 0, duration: 0.25 });
         gsap.to(childRef.current, { x: 0, y: 0, duration: 0.25 });
         gsap.to(onClickRef.current, { scale: 0, opacity: 0, duration: 0.25 });
+        gsap.to('#pointer', { opacity: 1, duration: 0.1 });
         setHovered(false);
         setClicked(false);
     }
@@ -55,7 +64,7 @@ export default function Button({ children, onClick, className, ...props }: { chi
     }
 
     return (
-        <button onClick={onClick} onMouseDown={mouseDown} onMouseUp={mouseUp} className={`border-4 flex items-center justify-center overflow-hidden cursor-none ${clicked ? "border-[#181818]" : "border-white"} ${className}`} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} onMouseMove={mouseMove} {...props}>
+        <button onClick={onClick} onMouseDown={mouseDown} onMouseUp={mouseUp} className={`border-4 flex items-center justify-center overflow-hidden md:cursor-none ${clicked ? "border-[#181818]" : "border-white"} ${className}`} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} onMouseMove={mouseMove} {...props}>
             <div className={`border-4 absolute pointer-events-none opacity-0 z-[-999] ${clicked ? "bg-[#181818] border-[#181818]" : "bg-white border-white"} ${className}`} ref={backgroundRef}/>
             <div ref={childRef} className={`pointer-events-none ${hovered ? "brightness-0" : ""}`}>
                 {children}

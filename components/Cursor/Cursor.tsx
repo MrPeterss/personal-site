@@ -1,36 +1,44 @@
-import React, { useRef, useState } from "react";
+import React, { RefObject, useEffect, useRef, useState } from "react";
 import gsap from 'gsap';
+import { useGSAP } from "@gsap/react";
 
 export default function Cursor() {
 
-  const [hidden, setHidden] = useState(false);
-  const [overText, setOverText] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
-  const pointer = useRef(null);
-
-  if (window) {
-    window.addEventListener('mousemove', (e) => {
-      gsap.to("#pointer", {
-        x: e.clientX - 16,
-        y: e.clientY - 16
+  useEffect(() => {
+    if (window) {
+      window.addEventListener('mousemove', (e) => {
+        gsap.to(ref.current, {
+          x: e.clientX - 16,
+          y: e.clientY - 16,
+          duration: 0.1
+        });
       });
-    });
-  }
-
-  // when hovering over a link, change the pointer to a pointer
-  window.addEventListener('mouseover', (e: MouseEvent) => {
-    var fire = e.target instanceof HTMLButtonElement || e.target instanceof HTMLAnchorElement;
-    if (fire && !hidden) {
-      setHidden(true);
-    } else if (hidden) {
-      setHidden(false);
     }
+  }, []);
+
+  useGSAP(() => {
+    gsap.fromTo(
+      "#pointer svg",
+      {
+        y: -2,
+      },
+      {
+        y: 2,
+        duration: 0.3,
+        repeat: -1,
+        yoyo: true,
+        stagger: 0.2
+      }
+    );
   });
 
-
-
-
   return (
-    <div className={`fixed pointer-events-none left-0 top-0 w-10 h-10 z-[9999] bg-white rounded-full ${hidden ? "opacity-0": "opacity-90"}`} id="pointer" ref={pointer} />
+    <div className={`fixed pointer-events-none left-0 top-0 w-12 h-12 z-[9999] bg-white rounded-full hidden md:flex items-center justify-center`} id="pointer" ref={ref}>
+      <svg className="w-6 h-6 opacity-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 22L1 11M12 22L23 11M12 22V2" stroke="#1E1E1E" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </div>
   );
 }
