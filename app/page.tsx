@@ -1,12 +1,8 @@
 "use client";
 
-import Badge from "@/components/Project/Badge";
-import Resume from "@/components/resume/Resume";
-import badges from "@/helpers/badges";
 import Image from "next/image";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { useRef, useState } from "react";
 import Cursor from "@/components/Cursor/Cursor";
 import Button from "@/components/Button/Button";
 import ScrollTrigger from 'gsap/ScrollTrigger'
@@ -71,8 +67,8 @@ export default function Home() {
 
   return (
     <>
-      <div id="main-bg" className="left-0 top-0 fixed w-screen h-screen z-[-10] bg-[#181818]" />
       <Cursor />
+      <div id="main-bg" className="left-0 top-0 fixed w-screen h-screen z-[-10] bg-[#181818]" />
       <section id="sec-1" className="h-screen flex flex-col md:flex-row items-center justify-around p-20">
         <div className="w-64 text-6xl font-medium flex flex-col content-between justify-around gap-4" id="intro">
           <h2>Hi...</h2>
@@ -92,16 +88,15 @@ export default function Home() {
         />
       </section>
       <section id="sec-2" className="grid grid-cols-2 lg:w-5/6 md:grid-cols-4 gap-3 p-3 self-center">
-        <div className="flex col-span-2 bg-[#333333] p-4">
-          <p className="text-white text-[16px] lg:text-lg xl:text-xl tracking-widest">
+        <div className="flex col-span-2 bg-[#333333] p-4 aspect-[2/1]">
+          <p className="text-white text-lg md:text-[16px] lg:text-lg xl:text-xl tracking-widest">
             I’m Peter, a <CustomLink href={"https://cis.cornell.edu/"} className="grad-red underline grad-red decoration-[#B31B1B] bg-[#B31B1B] md:bg-inherit">Cornell University</CustomLink>{" "}
             Information Science student and full-stack developer with a passion
-            for developing meaningful applications. I am an incoming software engineer intern at{" "}
-            <CustomLink href={"https://www.onestream.com/"} className="grad-blue underline decoration-[#3D64C9] bg-[#3D64C9] md:bg-inherit">OneStream Software</CustomLink>
+            for developing meaningful applications. 
           </p>
         </div>
-        <Project title="truscoop" img="/images/truscoop.png" link="/truscoop" className="bg-[#1E1E1E] row-span-1 aspect-square" type="project" />
-        <Project title="appdev" img="/images/appdev.png" link="/appdev" className="bg-[#1E1E1E] aspect-square md:aspect-auto md:row-span-2" type="extracurricular" />
+        <Project title="truscoop" img="/images/truscoop.png" link="/projects/truscoop" className="bg-[#1E1E1E] row-span-1 aspect-square" type="project" />
+        <Project title="appdev" img="/images/appdev.png" link="/extracurriculars/appdev" className="bg-[#1E1E1E] aspect-square md:aspect-auto md:row-span-2" type="extracurricular" />
         
         <Project title="friction" img="/images/friction.png" link="/friction" className="bg-[#1E1E1E] row-span-1 aspect-square" type="research project" />
         <Project title="melo tomorrow" img="/images/melo-tomorrow.png" link="/melo-tomorrow" className="bg-[#1E1E1E] aspect-square md:aspect-auto md:row-span-2" type="company/project" />

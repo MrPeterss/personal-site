@@ -69,8 +69,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} ${googleSans.variable} text-white flex flex-col items-center md:cursor-none bg-[#1E1E1E] bg-[url('/images/bg.svg')] bg-fixed`}>
+    <html lang="en" className="md:cursor-none">
+      <body className={`${inter.className} ${googleSans.variable} text-white flex flex-col items-center bg-[#1E1E1E] bg-[url('/images/bg.svg')] bg-fixed`}>
         <Providers>
           <main className="w-full md:w-[712] font-google flex flex-col">
             {children}

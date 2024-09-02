@@ -66,7 +66,7 @@ export default function Button({ children, onClick, className, ...props }: { chi
     return (
         <button onClick={onClick} onMouseDown={mouseDown} onMouseUp={mouseUp} className={`border-4 flex items-center justify-center overflow-hidden md:cursor-none ${clicked ? "border-[#181818]" : "border-white"} ${className}`} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} onMouseMove={mouseMove} {...props}>
             <div className={`border-4 absolute pointer-events-none opacity-0 z-[-999] ${clicked ? "bg-[#181818] border-[#181818]" : "bg-white border-white"} ${className}`} ref={backgroundRef}/>
-            <div ref={childRef} className={`pointer-events-none ${hovered ? "brightness-0" : ""}`}>
+            <div ref={childRef} className={`pointer-events-none flex gap-2 ${hovered ? "brightness-0" : ""}`}>
                 {children}
             </div>
         </button>

@@ -45,9 +45,11 @@ export default function Project({
     gsap.to('#pointer svg', { opacity: 0, duration: 0.2 });
   }
 
+  const linkHasProtocol = link.includes("http") || link.includes("https");
+
 
   return (
-    <Link href={link} target="_blank" rel="noreferrer" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}
+    <Link href={link} target={linkHasProtocol ? "_blank" : ""} rel={linkHasProtocol ? "noreferrer" : ""} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}
       className={`relative w-full h-full overflow-hidden md:cursor-none border-4 border-[#333333] rounded-lg ` + className}
       {...attributes}
     >

@@ -35,7 +35,7 @@ export default function Cursor() {
   });
 
   return (
-    <div className={`fixed pointer-events-none left-0 top-0 w-12 h-12 z-[9999] bg-white rounded-full hidden md:flex items-center justify-center`} id="pointer" ref={ref}>
+    <div className={`fixed pointer-events-none left-0 top-0 w-10 h-10 z-[9999] bg-white rounded-full hidden md:flex items-center justify-center`} id="pointer" ref={ref}>
       <svg className="w-6 h-6 opacity-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 22L1 11M12 22L23 11M12 22V2" stroke="#1E1E1E" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
