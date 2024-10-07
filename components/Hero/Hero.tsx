@@ -52,7 +52,7 @@ export default function Hero({ title, subtitle, backgroundImage, onClick, ...pro
                   {pathnames && pathnames.length > 0 && pathnames.map((path, index) => {
                     return (
                       <div key={index} className="flex items-center">
-                        <Link className="text-xl md:text-2xl hover:underline cursor-none" href={compoundPathnames[index]}>{path}</Link>
+                        <Link className="text-xl md:text-2xl hover:underline cursor-none" href={compoundPathnames[index]}>{path.replaceAll("-", " ")}</Link>
                         {index !== pathnames.length - 1 && (
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

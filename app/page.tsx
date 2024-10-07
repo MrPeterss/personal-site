@@ -98,15 +98,15 @@ export default function Home() {
         <Project title="truscoop" img="/images/truscoop.png" link="/projects/truscoop" className="bg-[#1E1E1E] row-span-1 aspect-square" type="project" />
         <Project title="appdev" img="/images/appdev.png" link="/extracurriculars/appdev" className="bg-[#1E1E1E] aspect-square md:aspect-auto md:row-span-2" type="extracurricular" />
         
-        <Project title="friction" img="/images/friction.png" link="/friction" className="bg-[#1E1E1E] row-span-1 aspect-square" type="research project" />
-        <Project title="melo tomorrow" img="/images/melo-tomorrow.png" link="/melo-tomorrow" className="bg-[#1E1E1E] aspect-square md:aspect-auto md:row-span-2" type="company/project" />
+        <Project title="friction" img="/images/friction.png" link="/projects/friction" className="bg-[#1E1E1E] row-span-1 aspect-square" type="research project" />
+        <Project title="melo tomorrow" img="/images/melo-tomorrow.png" link="/projects/melo-tomorrow" className="bg-[#1E1E1E] aspect-square md:aspect-auto md:row-span-2" type="company/project" />
         <div className="w-full aspect-square bg-[#333333]"/>
         <div className="w-full aspect-square bg-[#333333]"/>
-        <Project title="all in" img="/images/caution.png" link="/all-in" className="bg-[#1E1E1E] row-span-1 aspect-square" type="project" />
+        <Project title="all in" img="/images/caution.png" link="" className="bg-[#1E1E1E] row-span-1 aspect-square" type="project" />
         <div className="w-full aspect-square bg-[#333333]"/>
-        <Project title="coming soon" img="/images/caution.png" link="/all-in" className="bg-[#1E1E1E] row-span-1 aspect-square" type="under construction" />
+        <Project title="coming soon" img="/images/caution.png" link="" className="bg-[#1E1E1E] row-span-1 aspect-square" type="under construction" />
         <div className="w-full col-span-2 bg-[#333333]"/>
-        <Project title="coming soon" img="/images/caution.png" link="/all-in" className="bg-[#1E1E1E] row-span-1 aspect-square" type="under construction" />
+        <Project title="coming soon" img="/images/caution.png" link="" className="bg-[#1E1E1E] row-span-1 aspect-square" type="under construction" />
       </section>
     </>
   );
